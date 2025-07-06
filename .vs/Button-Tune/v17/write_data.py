@@ -8,7 +8,7 @@ def get_distance():
     print("Metre or Yard distances?")
     unit = input()
 
-
+    # compare input to sets of acceptable units
     if (Metres.count(unit.lower()) != 0):
         dist = get_float()
         return dist + ", metres"
@@ -24,18 +24,24 @@ def get_distance():
 def get_float():
     print ("What distance is the target at?")
     dist = input()
+
+    # check if the string data is an integer
     if (str(int(dist)) == dist):
         return dist
     else:
+        # loop if not integer input
         print ("Please input an integer value")
         return get_float()
 
 def get_target():
     print ("What size target face (in cm) are you shooting?")
     size = input()
+
+    # check if the string data is numerical
     if (str(float(size)) == size or str(float(size)) == size + ".0"):
         return ", " + size
     else:
+        # loop if not numerical input
         print ("Please input a numerical value")
         return get_target()
 
@@ -44,6 +50,8 @@ def get_arrow_pos():
     print ("What score did the arrow land on?")
     print ("Feel free to add in decimal points for a more precise position - 4.5 for a line cutter between 4 and 5, for example")
     score = input()
+
+    # check if the string data is numerical
     if (str(float(score)) == score or str(float(score)) == score + ".0"):
         if (float(score) <= 10.0 and float(score) >= 0.0):
             bearing = get_bearing()
@@ -72,5 +80,4 @@ position    = get_arrow_pos()
 
 data = distance + target_size + position
 with open(filename, "a") as f:
-    f.write("\n")
-    f.write(data)
+    f.write("\n" + data)
